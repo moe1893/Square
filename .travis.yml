@@ -1,0 +1,15 @@
+language: minimal
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+before_install:
+  docker build -t project/docker .
+
+script:
+  docker run project/docker godot --path project \
+   -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit
